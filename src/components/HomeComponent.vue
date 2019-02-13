@@ -48,12 +48,9 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'HomeComponent',
   props: {
     msg: String,
-  },
-  mounted() {
-    M.AutoInit();
   },
 };
 </script>
