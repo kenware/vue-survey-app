@@ -10,6 +10,7 @@
 <script>
 // @ is an alias to /src
 import HomeComponent from '@/components/HomeComponent.vue';
+import MateriazeInit from '../mixins/materializeInit-mixin';
 
 export default {
   name: 'home',
@@ -17,8 +18,9 @@ export default {
     HomeComponent,
   },
   mounted() {
-    M.AutoInit();
+    this.init();
   },
+  mixins: [MateriazeInit],
 };
 </script>
 

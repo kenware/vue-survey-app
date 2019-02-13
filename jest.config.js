@@ -20,4 +20,10 @@ module.exports = {
     '**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)',
   ],
   testURL: 'http://localhost/',
+  collectCoverage: true,
+  collectCoverageFrom: [
+    'src/**/*.{vue}',
+    'src/components/*.{vue}',
+    '!src/main.js',
+  ],
 };

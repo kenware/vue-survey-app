@@ -11,6 +11,7 @@
 
 <script>
 import NavComponent from './components/NavComponent.vue';
+import materializeInit from './mixins/materializeInit-mixin';
 
 export default {
   name: 'App',
@@ -18,8 +19,9 @@ export default {
     NavComponent,
   },
   mounted() {
-    M.AutoInit();
+    this.init();
   },
+  mixins: [materializeInit],
 };
 </script>
 
