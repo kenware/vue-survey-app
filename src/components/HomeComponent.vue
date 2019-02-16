@@ -7,6 +7,7 @@
         to take an assessment as a learner/student<br>
         check out the
         <a href="https://cli.vuejs.org" target="_blank" rel="noopener">Qick tour</a>.
+        <a class="btn-floating btn-small cyan pulse"><i class="material-icons">navigate_next</i></a>
       </p>
       </div>
       <div class="section">
@@ -77,5 +78,8 @@ a {
   }
   height: 50px;
   background-color: #f1f1f1 !important;
+}
+.pulse {
+  background-color: #42b983 !important;
 }
 </style>
