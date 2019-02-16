@@ -4,38 +4,28 @@ export default {
   namespaced: true,
   state: {
     user: {},
-    loginError: null,
-    signUpError: null,
-
+    errors: {
+      login: null,
+      signup: null,
+    },
   },
   mutations: {
     addUser(state, userObject) {
       state.user = userObject;
     },
     updateError(state, errorObject) {
-      state[errorObject.key] = errorObject.data;
+      state.errors[errorObject.key] = errorObject.data;
     },
   },
   actions: {
-    async signUp({ commit }, user) {
+    async LoginOrSignUp({ commit }, data) {
       try {
-        const response = await axios.post('/api/v1/users/', user);
+        const response = await axios.post(`/api/v1/${data.url}`, data.user);
         commit('addUser', response.data);
         localStorage.setItem('user', response.data);
         return { status: 'success', data: response.data };
       } catch (error) {
-        commit('updateError', { key: 'signUpError', data: error.response });
-        return { status: 'error', data: error.response };
-      }
-    },
-    async login({ commit }, user) {
-      try {
-        const response = await axios.post('/api/v1/login/', user);
-        commit('addUser', response.data);
-        localStorage.setItem('user', response.data);
-        return { status: 'success', data: response.data };
-      } catch (error) {
-        commit('updateError', { key: 'loginError', data: error.response });
+        commit('updateError', { key: data.key, data: error.response });
         return { status: 'error', data: error.response };
       }
     },

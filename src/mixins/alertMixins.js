@@ -32,5 +32,14 @@ export default {
         },
       });
     },
+    sendResponse(response, modalName, successMessage, errorTitle) {
+      if (response.status === 'success') {
+        this.$modal.hide(modalName);
+        this.Alert('Success', 'success', { message: successMessage });
+      } else {
+        const title = errorTitle;
+        this.Alert(title, 'error', response.data.data);
+      }
+    },
   },
 };

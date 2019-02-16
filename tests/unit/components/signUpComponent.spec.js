@@ -17,7 +17,7 @@ describe('Views/signup.vue', () => {
 
   it('test signup method', () => {
     const actions = {
-      signUp: jest.fn(),
+      LoginOrSignUp: jest.fn(),
     };
 
     const user = {

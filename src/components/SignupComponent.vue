@@ -61,7 +61,7 @@
 
 <script>
 import Validator from 'validatorjs';
-import Alert from '@/mixins/alertMixins';
+import AlertMixins from '@/mixins/alertMixins';
 
 export default {
   name: 'SignupComponent',
@@ -103,24 +103,17 @@ export default {
       });
       validator.fails();
       const allError = validator.errors.errors;
-      for (const obj of Object.entries(allError)) {
+      Object.entries(allError).forEach((obj) => {
         this.errors[obj[0]] = validator.errors.first(obj[0]);
-      }
+      });
       if (!Object.keys(allError).length) {
-        response = await this.$store.dispatch('user/signUp', data);
-        this.sendResponse(response);
+        const detail = { user: data, url: 'users/', key: 'signup' };
+        response = await this.$store.dispatch('user/LoginOrSignUp', detail);
+        const successMessage = 'user successfully signed up';
+        const errorTitle = 'Error occured during signup';
+        this.sendResponse(response, 'signup', successMessage, errorTitle);
       } else {
         this.Alert('signup', 'error', allError);
-      }
-    },
-
-    sendResponse(response) {
-      if (response.status === 'success') {
-        this.$modal.hide('signup');
-        this.Alert('Success', 'success', { message: 'user successfully signed up' });
-      } else {
-        const title = 'Error occured during signup';
-        this.Alert(title, 'error', response.data.data);
       }
     },
 
@@ -135,7 +128,7 @@ export default {
       }
     },
   },
-  mixins: [Alert],
+  mixins: [AlertMixins],
 };
 </script>
 

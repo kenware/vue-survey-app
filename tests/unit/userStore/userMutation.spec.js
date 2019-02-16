@@ -19,11 +19,11 @@ describe('Mutation', () => {
   });
   it('update an error to state', () => {
     const state = {
-      loginError: null,
+      errors: { login: null },
     };
-    const error = { key: 'loginError', data: 'error login' };
+    const error = { key: 'login', data: 'error login' };
     mutations.updateError(state, error);
 
-    expect(state.loginError).toEqual(error.data);
+    expect(state.errors.login).toEqual(error.data);
   });
 });

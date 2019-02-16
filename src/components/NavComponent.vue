@@ -9,16 +9,16 @@
         <a href="#" data-target="mobile-demo" class="sidenav-trigger">
         <i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li @click="modalShow"><router-link to="#">Login</router-link></li>
-          <li @click="modalShow"><router-link to="#">Register</router-link></li>
+          <li @click="modalShow('login')"><router-link to="#login">Login</router-link></li>
+          <li @click="modalShow('signup')"><router-link to="#signup">Register</router-link></li>
           <li><router-link to="/about">About</router-link></li>
           <li><router-link to="/about">Contact</router-link></li>
         </ul>
       </div>
     </nav>
     <ul class="sidenav" id="mobile-demo">
-      <li @click="modalShow"><router-link to="#">Login</router-link></li>
-      <li @click="modalShow"><router-link to="#">Register</router-link></li>
+      <li @click="modalShow('login')"><router-link to="#">Login</router-link></li>
+      <li @click="modalShow('signup')"><router-link to="#">Register</router-link></li>
       <li><router-link to="/about">About</router-link></li>
       <li><router-link to="/about">Contact</router-link></li>
     </ul>
@@ -29,11 +29,11 @@
 export default {
   name: 'NavComponent',
   methods: {
-    modalShow() {
-      this.$modal.show('signup');
+    modalShow(name) {
+      this.$modal.show(name);
     },
-    modalHide() {
-      this.$modal.hide('signup');
+    modalHide(name) {
+      this.$modal.hide(name);
     },
   },
 };
