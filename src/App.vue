@@ -7,6 +7,7 @@
       <router-view/>
     </main>
     <SignupComponent />
+    <LoginComponent />
   </div>
 </template>
 
@@ -14,12 +15,14 @@
 import NavComponent from './components/NavComponent.vue';
 import materializeInit from './mixins/materializeInit-mixin';
 import SignupComponent from '@/components/SignupComponent.vue';
+import LoginComponent from '@/components/LoginComponent.vue';
 
 export default {
   name: 'App',
   components: {
     NavComponent,
     SignupComponent,
+    LoginComponent,
 
   },
   mounted() {
