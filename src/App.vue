@@ -6,17 +6,21 @@
     <main>
       <router-view/>
     </main>
+    <SignupComponent />
   </div>
 </template>
 
 <script>
 import NavComponent from './components/NavComponent.vue';
 import materializeInit from './mixins/materializeInit-mixin';
+import SignupComponent from '@/components/SignupComponent.vue';
 
 export default {
   name: 'App',
   components: {
     NavComponent,
+    SignupComponent,
+
   },
   mounted() {
     this.init();

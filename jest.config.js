@@ -22,8 +22,8 @@ module.exports = {
   testURL: 'http://localhost/',
   collectCoverage: true,
   collectCoverageFrom: [
-    'src/**/*.{vue}',
-    'src/components/*.{vue}',
+    'src/**/*.{js,vue}',
     '!src/main.js',
+    '!src/mixins/materializeInit-mixin.js',
   ],
 };

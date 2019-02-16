@@ -9,16 +9,16 @@
         <a href="#" data-target="mobile-demo" class="sidenav-trigger">
         <i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li><router-link to="/about">Login</router-link></li>
-          <li><router-link to="/about">Register</router-link></li>
+          <li @click="modalShow"><router-link to="#">Login</router-link></li>
+          <li @click="modalShow"><router-link to="#">Register</router-link></li>
           <li><router-link to="/about">About</router-link></li>
           <li><router-link to="/about">Contact</router-link></li>
         </ul>
       </div>
     </nav>
     <ul class="sidenav" id="mobile-demo">
-      <li><router-link to="/about">Login</router-link></li>
-      <li><router-link to="/about">Register</router-link></li>
+      <li @click="modalShow"><router-link to="#">Login</router-link></li>
+      <li @click="modalShow"><router-link to="#">Register</router-link></li>
       <li><router-link to="/about">About</router-link></li>
       <li><router-link to="/about">Contact</router-link></li>
     </ul>
@@ -28,6 +28,14 @@
 <script>
 export default {
   name: 'NavComponent',
+  methods: {
+    modalShow() {
+      this.$modal.show('signup');
+    },
+    modalHide() {
+      this.$modal.hide('signup');
+    },
+  },
 };
 </script>
 
