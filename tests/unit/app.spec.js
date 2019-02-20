@@ -12,8 +12,13 @@ describe('App.vue', () => {
       propsData: { msg },
       methods: { init: () => {} },
       stubs: { 'router-view': localVue },
+      mocks: {
+        $store: { commit: jest.fn() },
+        $router: { push: jest.fn() },
+      },
     });
     expect(wrapper.exists()).toBe(true);
     expect(wrapper.contains('div')).toBe(true);
+    wrapper.vm.logOut();
   });
 });

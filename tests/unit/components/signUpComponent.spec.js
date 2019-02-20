@@ -69,6 +69,9 @@ describe('Views/signup.vue', () => {
         $modal: {
           hide: jest.fn(),
         },
+        $router: {
+          push: jest.fn(),
+        },
       },
     });
     wrapper.vm.sendResponse({ status: 'error', data: { data: 'error occured' } });

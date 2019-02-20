@@ -14,6 +14,11 @@ describe('Views/NavComponent.vue', () => {
           show: jest.fn(),
           hide: jest.fn(),
         },
+        $store: {
+          state: {
+            user: { user: { username: 'ken', id: 1, token: 'token' } },
+          },
+        },
       },
       stubs: { 'router-link': RouterLinkStub },
     });
