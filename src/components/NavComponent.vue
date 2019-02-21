@@ -9,8 +9,21 @@
         <a href="#" data-target="mobile-demo" class="sidenav-trigger">
         <i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li @click="modalShow('login')"><router-link to="#login">Login</router-link></li>
-          <li @click="modalShow('signup')"><router-link to="#signup">Register</router-link></li>
+          <li v-if="!isAuthenticated.username" @click="modalShow('login')">
+            <router-link to="#login">Login</router-link>
+           </li>
+          <li v-if="!isAuthenticated.username" @click="modalShow('signup')">
+            <router-link to="#signup">Register</router-link>
+          </li>
+
+          <li v-if="isAuthenticated.username" >
+            <router-link class="dropdown-trigger" href="#!" data-target="dropdown1" to="#!">
+              {{isAuthenticated.username}}<i class="material-icons right">arrow_drop_down</i>
+            </router-link>
+          </li>
+          <li v-if="isAuthenticated.username" ><router-link to="/dashboard">
+              Dashboard
+          </router-link></li>
           <li><router-link to="/about">About</router-link></li>
           <li><router-link to="/about">Contact</router-link></li>
         </ul>
@@ -22,10 +35,17 @@
       <li><router-link to="/about">About</router-link></li>
       <li><router-link to="/about">Contact</router-link></li>
     </ul>
+    <ul id="dropdown1" class="dropdown-content ">
+      <li v-if="isAuthenticated.username" @click="logOut"><router-link to="#">
+        logOut
+      </router-link></li>
+    </ul>
   </div>
 </template>
 
 <script>
+import isAuthenticated from '@/mixins/authentication';
+
 export default {
   name: 'NavComponent',
   methods: {
@@ -36,6 +56,7 @@ export default {
       this.$modal.hide(name);
     },
   },
+  mixins: [isAuthenticated],
 };
 </script>
 

@@ -22,7 +22,9 @@ export default {
       try {
         const response = await axios.post(`/api/v1/${data.url}`, data.user);
         commit('addUser', response.data);
-        localStorage.setItem('user', response.data);
+        localStorage.setItem('accessToken', response.data.token);
+        localStorage.setItem('accessUser', response.data.username);
+        localStorage.setItem('accessUserId', response.data.id);
         return { status: 'success', data: response.data };
       } catch (error) {
         commit('updateError', { key: data.key, data: error.response });

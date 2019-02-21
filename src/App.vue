@@ -16,6 +16,7 @@ import NavComponent from './components/NavComponent.vue';
 import materializeInit from './mixins/materializeInit-mixin';
 import SignupComponent from '@/components/SignupComponent.vue';
 import LoginComponent from '@/components/LoginComponent.vue';
+import Authentication from '@/mixins/authentication';
 
 export default {
   name: 'App',
@@ -28,7 +29,10 @@ export default {
   mounted() {
     this.init();
   },
-  mixins: [materializeInit],
+  created() {
+    this.authenticatedSession();
+  },
+  mixins: [materializeInit, Authentication],
 };
 </script>
 
