@@ -1,4 +1,5 @@
 import axios from 'axios';
+import baseUrl from '../config/host';
 
 export default {
   namespaced: true,
@@ -20,7 +21,7 @@ export default {
     async get({ commit }, data) {
       const headers = { Authorization: `Bearer ${localStorage.getItem('accessToken')}` };
       try {
-        const response = await axios.get(`/api/v1/assessments/${data.url}`, { headers });
+        const response = await axios.get(`${baseUrl}/v1/assessments/${data.url}`, { headers });
         commit('addGetObjectToState', { key: data.key, value: response.data });
         return { status: 'success', data: response.data };
       } catch (error) {

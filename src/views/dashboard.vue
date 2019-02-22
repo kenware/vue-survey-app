@@ -94,11 +94,13 @@
 <script>
 import AlertWithRedirect from '@/mixins/AlertWithRedirect';
 import { mapState } from 'vuex';
+import materializeInit from '@/mixins/materializeInit-mixin';
 
 export default {
   name: 'dashboard',
-  mixins: [AlertWithRedirect],
+  mixins: [AlertWithRedirect, materializeInit],
   async created() {
+    this.init();
     const assessmentUrl = '?include=children&name=Practice assessment';
     const scoreUrl = `score/?userId=${this.$store.state.user.user.id}`;
     this.$store.dispatch('assessment/get', { key: 'assessment', url: assessmentUrl });

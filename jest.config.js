@@ -25,5 +25,6 @@ module.exports = {
     'src/**/*.{js,vue}',
     '!src/main.js',
     '!src/mixins/materializeInit-mixin.js',
+    '!src/config/host.js',
   ],
 };

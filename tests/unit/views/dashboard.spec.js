@@ -24,6 +24,7 @@ describe('Views/Dashboard.vue', () => {
   it('renders components properly', () => {
     const wrapper = mount(Dashboard, {
       localVue,
+      methods: { init: () => {} },
       mocks: {
         $store: {
           dispatch: jest.fn(),
