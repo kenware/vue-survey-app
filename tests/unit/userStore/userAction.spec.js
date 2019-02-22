@@ -1,5 +1,6 @@
 
 import UserStore from '@/store/userStore';
+import baseUrl from '@/config/host';
 
 const action = UserStore.actions;
 const user = {
@@ -25,7 +26,7 @@ describe('user store', () => {
     const commit = jest.fn();
     await action.LoginOrSignUp({ commit }, { user, url: 'users/', key: 'signup' });
 
-    expect(url).toBe('/api/v1/users/');
+    expect(url).toBe(`${baseUrl}/v1/users/`);
     expect(body).toEqual(user);
   });
 
@@ -33,7 +34,7 @@ describe('user store', () => {
     const commit = jest.fn();
     await action.LoginOrSignUp({ commit }, { user, url: 'login/', key: 'login' });
 
-    expect(url).toBe('/api/v1/login/');
+    expect(url).toBe(`${baseUrl}/v1/login/`);
     expect(body).toEqual(user);
   });
 

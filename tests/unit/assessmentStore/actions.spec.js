@@ -1,5 +1,6 @@
 
 import AssessmentStore from '@/store/assessmentStore';
+import baseUrl from '@/config/host';
 
 const { actions } = AssessmentStore;
 const headers = { headers: { Authorization: 'Bearer null' } };
@@ -22,7 +23,7 @@ describe('assessment store', () => {
     const commit = jest.fn();
     await actions.get({ commit }, { key: 'assessment', url: '?userId=1' });
 
-    expect(url).toBe('/api/v1/assessments/?userId=1');
+    expect(url).toBe(`${baseUrl}/v1/assessments/?userId=1`);
     expect(body).toEqual(headers);
   });
 
