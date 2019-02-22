@@ -1,4 +1,5 @@
 import axios from 'axios';
+import baseUrl from '../config/host';
 
 export default {
   namespaced: true,
@@ -20,7 +21,7 @@ export default {
   actions: {
     async LoginOrSignUp({ commit }, data) {
       try {
-        const response = await axios.post(`/api/v1/${data.url}`, data.user);
+        const response = await axios.post(`${baseUrl}/v1/${data.url}`, data.user);
         commit('addUser', response.data);
         localStorage.setItem('accessToken', response.data.token);
         localStorage.setItem('accessUser', response.data.username);
