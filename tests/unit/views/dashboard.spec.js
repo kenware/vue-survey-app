@@ -3,6 +3,7 @@ import {
 } from '@vue/test-utils';
 import Dashboard from '@/views/dashboard.vue';
 import VueRouter from 'vue-router';
+import sinon from 'sinon';
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
@@ -36,9 +37,13 @@ describe('Views/Dashboard.vue', () => {
       },
       stubs: { 'router-link': RouterLinkStub },
     });
+    sinon.spy(wrapper.vm, 'handlePage');
+
+    wrapper.vm.handlePage(2);
+    expect(wrapper.vm.handlePage.callCount).toBe(1);
     expect(wrapper.exists()).toBe(true);
     expect(wrapper.contains('div')).toBe(true);
     wrapper.find('a.alert').trigger('click');
-    wrapper.vm.Alert('success', { m: ['success'] }, { params: 'assessment' });
+    wrapper.vm.redirectAlert('success', { m: ['success'] }, { params: 'assessment' });
   });
 });
