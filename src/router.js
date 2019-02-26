@@ -21,7 +21,7 @@ export default new Router({
       component: Dashboard,
     },
     {
-      path: '/assessment/start/:title',
+      path: '/assessment/start/:id/:type',
       name: 'assessment',
       component: AssessmentComponent,
       props: true,

@@ -12,8 +12,8 @@
             <div class="card-content">
               <ul class="">
                 <li v-for="item in assessment" :key="item.id" class="list">
-                <a @click="Alert(alertData.title, {message: alertData.message + item.type},
-                 { params: item.type})" class="alert">
+                <a @click="redirectAlert(alertData.title, {message: alertData.message + item.type},
+                 { params: `/assessment/start/${item.id}/${item.type}`})" class="alert">
                 {{item.type}} <i class="material-icons">send</i></a>
                 </li>
                </ul>
@@ -85,6 +85,18 @@
 
         </tbody>
       </table>
+      <div class ="section center">
+        <div class="divider" />
+          <paginate
+          :page-count="Math.ceil(scores.count/limit)"
+          :margin-pages="3"
+          :click-handler="handlePage"
+          :prev-text="'Prev'"
+          :next-text="'Next'"
+          :container-class="'pagination'"
+          :page-class="'page-item'">
+          </paginate>
+      </div>
        </div>
      </div>
    </div>
@@ -99,10 +111,18 @@ import materializeInit from '@/mixins/materializeInit-mixin';
 export default {
   name: 'dashboard',
   mixins: [AlertWithRedirect, materializeInit],
+  methods: {
+    handlePage(num) {
+      const { limit } = this;
+      const offset = (num - 1) * limit;
+      const scoreUrl = `score/?userId=${this.$store.state.user.user.id}&limit=${this.limit}&offset=${offset}&orderBy=ascId`;
+      this.$store.dispatch('assessment/get', { key: 'score', url: scoreUrl });
+    },
+  },
   async created() {
     this.init();
     const assessmentUrl = '?include=children&name=Practice assessment';
-    const scoreUrl = `score/?userId=${this.$store.state.user.user.id}`;
+    const scoreUrl = `score/?userId=${this.$store.state.user.user.id}&limit=${this.limit}&offset=0&orderBy=ascId`;
     this.$store.dispatch('assessment/get', { key: 'assessment', url: assessmentUrl });
     this.$store.dispatch('assessment/get', { key: 'score', url: scoreUrl });
   },
@@ -111,6 +131,9 @@ export default {
       assessment: state => state.assessment.assessment.results[0].assessments,
       scores: state => state.assessment.score,
     }),
+    limit() {
+      return 5;
+    },
     alertData() {
       return {
         title: 'Information',

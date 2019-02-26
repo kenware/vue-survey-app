@@ -3,7 +3,7 @@ import formatContent from './formatAlertContent';
 
 export default {
   methods: {
-    Alert(title, messageObject, routeData) {
+    redirectAlert(title, messageObject, routeData) {
       const content = formatContent(messageObject);
       return swal({
         // eslint-disable-next-line prefer-template
@@ -23,7 +23,7 @@ export default {
           // eslint-disable-next-line default-case
           switch (value) {
             case 'proceed':
-              this.$router.push(`/assessment/start/${routeData.params}`);
+              this.$router.push(routeData.params);
           }
         });
     },

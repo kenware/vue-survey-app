@@ -113,7 +113,7 @@ export default {
         const errorTitle = 'Error occured during signup';
         this.sendResponse(response, 'signup', successMessage, errorTitle);
       } else {
-        this.Alert('signup', 'error', allError);
+        this.Alert('signup', 'error', allError, 3000);
       }
     },
 
